@@ -22,7 +22,6 @@
   <script type='text/javascript' src='etc/js/include.js'></script>
   <script type='text/javascript' src='etc/js/engine.js'> </script>
 
-  <meta name="google-site-verification" content="DRGLryc3qdAjskDiTgqW0qmYEC6gkSVHREIk9n8WXLs" />
 </head>
 <body onload="setTimeout(function() {init();}, 100);">
   <canvas id="mycanvas" class="mycanvas">
