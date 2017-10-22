@@ -23,13 +23,13 @@ function Manufacturing(x, y){
   this.getProduction = function(){
     prod = 0;
     for(var i = 0; i < this.children.length; i++){ 
-      prod += (this.children[i].owned * this.children[i].number);
+      prod += (this.children[i].owned * this.children[i].production);
     }
     return prod;
   }
 
   this.render = function(ctx){
-    ctx.font      = '16px Georgia';
+    ctx.font = engine.headersize() + 'px ' + engine.font();
     ctx.fillStyle = '#000000';
     ctx.fillText('Manufacturing', this.x(), this.y()+5);
     this.renderChildren(ctx);

@@ -21,13 +21,13 @@ function Distribution(x, y){
   this.getSales = function(){
     sales = 0;
     for(var i = 0; i < this.children.length; i++){ 
-      sales += (this.children[i].owned * this.children[i].number);
+      sales += (this.children[i].owned * this.children[i].production);
     }
     return sales;
   }
 
   this.render = function(ctx){
-    ctx.font      = '16px Georgia';
+    ctx.font = engine.headersize() + 'px ' + engine.font();
     ctx.fillStyle = '#000000';
     ctx.fillText('Distribution', this.x(), this.y()+5);
     this.renderChildren(ctx);

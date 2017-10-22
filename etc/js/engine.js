@@ -9,12 +9,12 @@ function Engine(){
   this.tp             = +new Date();
 
   this.init = function(){
-    this.canvas               = document.getElementById('mycanvas');
-    this.ctx                  = this.canvas.getContext('2d');
-    this.ctx.canvas.width     = window.innerWidth;
-    this.ctx.canvas.height    = window.innerHeight;
+    this.canvas = document.getElementById('mycanvas');
+    this.ctx = this.canvas.getContext('2d');
+    this.ctx.canvas.width = window.innerWidth;
+    this.ctx.canvas.height = window.innerHeight;
     engine.canvas.onmousedown = onmousedown(this.mouse);
-    engine.canvas.onmouseup   = onmouseup(this.mouse);
+    engine.canvas.onmouseup = onmouseup(this.mouse);
     this.scene.init();
   }
 
@@ -29,6 +29,10 @@ function Engine(){
     this.scene.update((tn-this.tp));
     this.tp = tn;
   }
+
+  this.font = function() { return("Arial"); }
+  this.headersize = function() { return(16); }
+  this.fontsize = function() { return(12); }
 }
 
 var engine;

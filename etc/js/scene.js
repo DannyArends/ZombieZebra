@@ -11,29 +11,34 @@ function mainLayout(children, scene){
   children.push(scene.bg);
   children.push(scene.display);
   children.push(scene.text);
-  children.push(new   Text( 520,   0, ".nl", '#000000', 'Avant Garde', 75));
-  children.push(new   Text( 18,   0, "Zombie Zebra", '#FFFFFF', 'Avant Garde', 75));
-  children.push(new Button( 18, 125, "Zombie Zebra",          150, 20, '#330000', '#FFFFFF', gBC(scene)));
-  children.push(new Button( 18, 150, "Blog",                  150, 20, '#330000', '#FFFFFF', gBC(scene)));
-  children.push(new Button( 18, 175, "Paper clip clicker",    150, 20, '#330000', '#FFFFFF', gBC(scene)));
-  children.push(new Button( 18, 200, "About",                 150, 20, '#330000', '#FFFFFF', gBC(scene)));
-  children.push(new Button( 18, 225, "Contact",               150, 20, '#330000', '#FFFFFF', gBC(scene)));
+  children.push(new   Text( 520,   0, ".nl", '#000000', engine.font(), 75));
+  children.push(new   Text( 18,   0, "Zombie Zebra", '#FFFFFF', engine.font(), 75));
+  children.push(new Button( 18, 125, "Zombie Zebra", 150, 20, '#330000', '#FFFFFF', gBC(scene)));
+  children.push(new Button( 18, 150, "Blog", 150, 20, '#330000', '#FFFFFF', gBC(scene)));
+  children.push(new Button( 18, 175, "Paper clip clicker", 150, 20, '#330000', '#FFFFFF', gBC(scene)));
+  children.push(new Button( 18, 200, "About", 150, 20, '#330000', '#FFFFFF', gBC(scene)));
+  children.push(new Button( 18, 225, "Contact", 150, 20, '#330000', '#FFFFFF', gBC(scene)));
 }
 
 function openPage(scene, page){
   var text;
   switch(page){
     case "Zombie Zebra":
-      scene.children.push(new Page("index", 190, 160));     break;
+      scene.children.push(new Page("index", 190, 160));
+      break;
     case "About":
-      scene.children.push(new Page("about", 190, 160));     break;
+      scene.children.push(new Page("about", 190, 160));
+      break;
     case "Blog":
-      scene.children.push(new Page("blog", 190, 160));     break;
+      scene.children.push(new Page("blog", 190, 160));
+      break;
     case "Contact":
-      scene.children.push(new Page("contact", 190, 160));   break;
+      scene.children.push(new Page("contact", 190, 160));
+      break;
     case "Paper clip clicker":
       scene.cGame = new Game("pcc",   190, 160);
-      scene.children.push(scene.cGame);     break;
+      scene.children.push(scene.cGame);
+      break;
     default:
       scene.children.push(new Page("notfound", 190, 160));
       break;
@@ -42,27 +47,27 @@ function openPage(scene, page){
 
 Scene.prototype = new Object2D();
 Scene.prototype.constructor = Scene;
-function Scene(mouse){
+function Scene(mouse) {
   Object2D.apply(this, [0, 0, '#EF0000', window.innerWidth, window.innerHeight]);
   this.mouse   = mouse;
   this.files   = new FileLoader();
-  this.display = new Square(160, 95, window.innerWidth - 170, window.innerHeight - 95, 'rgba(233,233,233,0.95)');
-  this.bg      = this.files.loadImage('etc/img/bg.png', 0, 0, window.innerWidth, window.innerHeight);
-  this.text    = new   Text( 190, 115, "Zombie Zebra", '#000000', 'Avant Garde', 20);
   this.cGame   = null;
 
   this.init = function(){
+    this.display = new Square(160, 95, window.innerWidth - 170, window.innerHeight - 95, 'rgba(233,233,233,0.95)');
+    this.bg      = this.files.loadImage('etc/img/bg.png', 0, 0, window.innerWidth, window.innerHeight);
+    this.text    = new Text( 190, 115, "Zombie Zebra", '#000000', 'Arial', 20);
     this.switchPage("Zombie Zebra");
   }
 
-  this.update = function(t){
+  this.update = function(t) {
     if(this.cGame) this.cGame.update(t);
   }
 
   this.getCurrentGame    = function(){ if(this.cGame) return this.cGame; }
-  this.getInventory      = function(){ if(this.cGame) return this.cGame.children[0]; }
-  this.getManufacturing  = function(){ if(this.cGame) return this.cGame.children[1]; }
-  this.getDistribution   = function(){ if(this.cGame) return this.cGame.children[2]; }
+  this.getInventory      = function(){ if(this.cGame) return this.cGame.inventory; }
+  this.getManufacturing  = function(){ if(this.cGame) return this.cGame.manufacturing; }
+  this.getDistribution   = function(){ if(this.cGame) return this.cGame.distribution; }
 
   this.switchPage = function(page){
     this.children = [];

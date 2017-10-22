@@ -1,10 +1,3 @@
-function rendertext(ctx, txt, val, x, y, p, prefix){
-  if(!p) p = 0;
-  if(!prefix) prefix = '';
-  ctx.fillText(txt, x, y);
-  ctx.fillText(prefix  + val.toFixed(p), x + 100, y);
-}
-
 function onBend(inv){ return function(){ 
     inv.paperclips += 25; 
 } }
@@ -19,7 +12,7 @@ function onSell(inv){ return function(){
 
 Inventory.prototype = new Object2D();
 Inventory.prototype.constructor = Inventory;
-function Inventory(x, y){
+function Inventory(x, y) {
   Object2D.apply(this, [x, y, '#000000']);
   this.money      = 0;
   this.paperclips = 0;
@@ -28,9 +21,9 @@ function Inventory(x, y){
   this.earned     = 0;
   this.tp         = +new Date();
 
-  this.update = function(t){
+  this.update = function(t) {
     var tn = +new Date();
-    if(tn-this.tp > 950){
+    if (tn-this.tp > 950) {
       this.timeplayed++;
       var produced = this.production();
       this.paperclips += produced;
@@ -89,11 +82,11 @@ function Inventory(x, y){
   }
 
   this.render = function(ctx){
-    ctx.font      = '16px Georgia';
+    ctx.font = engine.headersize() + 'px ' + engine.font();
     ctx.fillStyle = '#000000';
     ctx.fillText('Inventory', this.x(), this.y()+5);
 
-    ctx.font      = '12px Georgia';
+    ctx.font      = engine.fontsize() + 'px ' + engine.font();
     ctx.fillStyle = '#000000';
     rendertext(ctx, 'Seconds:',       this.timeplayed,      this.x(), this.y() +  28);
     rendertext(ctx, 'Paper clips:',   this.paperclips,      this.x(), this.y() +  44);
