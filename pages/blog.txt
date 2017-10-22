@@ -1,0 +1,4 @@
+[16-Nov-13] New distribution building: Maffia marketing agency
+[16-Nov-13] Adjusted the header. Updates to: colors and added a back image for the website
+[10-Nov-13] Updated Paper click clicker to V0.0.0-1
+[10-Nov-13] Created the Index, Blog, About and Contact pages

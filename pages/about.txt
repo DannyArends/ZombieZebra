@@ -1,0 +1,7 @@
+[Zombie Zebra]
+Creates new concept web applications using HTML 5 and the HTML Canvas element
+
+Building an Empire
+
+[Paper clip clicker]
+Game in which you build up a paper clip business
